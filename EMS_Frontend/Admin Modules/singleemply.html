@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Employee</title>
+    <link rel="stylesheet" href="singlestyle.css"> <!-- Link to the CSS file -->
+</head>
+<body>
+    <div class="dashboard-container">
+        <header>
+            <h1>View Employee Details</h1>
+        </header>
+
+        <div class="container">
+            <h2>Employee Information</h2>
+            <div class="employee-details">
+                <h3>Personal Details</h3>
+                <p><strong>Name:</strong> <span id="emp_full_name"></span></p>
+                <p><strong>Date of Birth:</strong> <span id="emp_dob"></span></p>
+                <p><strong>Age:</strong> <span id="emp_age"></span></p>
+                <p><strong>Gender:</strong> <span id="emp_gender"></span></p>
+                <p><strong>Current Address:</strong> <span id="emp_current_address"></span></p>
+                <p><strong>Permanent Address:</strong> <span id="emp_permanent_address"></span></p>
+                <p><strong>Mobile:</strong> <span id="emp_mobile"></span></p>
+                <p><strong>Company Email:</strong> <span id="emp_company_email"></span></p>
+                <p><strong>Employment Code:</strong> <span id="emp_employment_code"></span></p>
+
+                <h3>Professional Details</h3>
+                <p><strong>Office Phone:</strong> <span id="emp_office_phone"></span></p>
+                <p><strong>Reporting Manager:</strong> <span id="emp_reporting_manager_name"></span></p>
+                <p><strong>Reporting Manager Code:</strong> <span id="emp_reporting_manager_code"></span></p>
+                <p><strong>Reporting Manager Email:</strong> <span id="emp_reporting_manager_email"></span></p>
+                <p><strong>Date of Joining:</strong> <span id="emp_date_of_joining"></span></p>
+                <p><strong>Office Address:</strong> <span id="emp_office_address"></span></p>
+
+                <h3>Project Details</h3>
+                <p><strong>Current Project Name:</strong> <span id="emp_project_name"></span></p>
+                <p><strong>Project Code:</strong> <span id="emp_project_code"></span></p>
+                <p><strong>Start Date:</strong> <span id="emp_project_start_date"></span></p>
+                <p><strong>End Date:</strong> <span id="emp_project_end_date"></span></p>
+                <p><strong>Project Manager:</strong> <span id="emp_project_manager_name"></span></p>
+
+                <h3>Finance Details</h3>
+                <p><strong>PAN Card:</strong> <span id="emp_pan"></span></p>
+                <p><strong>Aadhar Card:</strong> <span id="emp_aadhar"></span></p>
+                <p><strong>Bank Name:</strong> <span id="emp_bank_name"></span></p>
+                <p><strong>Bank Account Number:</strong> <span id="emp_bank_account_number"></span></p>
+                <p><strong>Bank Branch:</strong> <span id="emp_bank_branch"></span></p>
+                <p><strong>IFSC Code:</strong> <span id="emp_ifsc_code"></span></p>
+            </div>
+
+            <button onclick="closeWindow()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to close the current window and redirect to the total employee page
+        function closeWindow() {
+            window.location.href = 'totalemply.html'; // Redirect to the total employees page
+        }
+    </script>
+</body>
+</html>
