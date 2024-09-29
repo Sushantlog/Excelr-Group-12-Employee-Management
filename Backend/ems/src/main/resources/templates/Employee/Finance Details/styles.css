@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #e0eafc, #cfdef3); /* Gradient background */
+    color: #333;
+    padding: 20px;
+}
+
+
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.homebutton{
+    margin-left: 85%;
+    padding: 1%;
+    border-radius: 15%;
+    font-size: medium;
+    color: white;
+    background-color: #1A60A9;
+    
+}
+
+h2 {
+    font-size: 20px;
+    color: #34495e;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e1e7ed;
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+h2 i {
+    margin-right: 10px;
+    color: #3e82f7;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Light background for the info rows */
+    transition: background-color 0.2s;
+}
+
+.info-row:hover {
+    background-color: #e9ecef; /* Slightly darker on hover */
+}
+
+label {
+    font-weight: bold;
+    color: #34495e;
+    flex: 1;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+}
+
+label i {
+    margin-right: 8px;
+    color: #3498db;
+}
+
+.info-box {
+    background-color: #ecf0f1;
+    padding: 10px;
+    border-radius: 5px;
+    color: #34495e;
+    text-align: right;
+    flex: 2;
+    font-size: 15px;
+    transition: transform 0.2s;
+}
+
+.info-box:hover {
+    transform: scale(1.05); /* Slightly scale on hover */
+}
+
+.download-btn {
+    background-color: #3e82f7; /* Button background color */
+    color: white; /* Text color */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.download-btn:hover {
+    background-color: #3498db; /* Darker shade on hover */
+}
