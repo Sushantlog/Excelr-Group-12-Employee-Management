@@ -1,5 +1,5 @@
 package com.company.ems.service;
 
-public class Employee {
+public class RoleService {
 
 }
