@@ -17,7 +17,6 @@ public class AdminController {
     @Autowired
     private EmployeeService employeeService;
 
-    // Display Admin Dashboard
     @GetMapping("/dashboard")
     public String adminDashboard(Model model){
         model.addAttribute("employees", employeeService.getAllEmployees());

@@ -1,0 +1,38 @@
+<!-- src/main/resources/templates/employee/dashboard.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: layout">
+<head>
+    <title>Employee Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, <span th:text="${employee.personalDetails.fullName}">John Doe</span></h2>
+    
+    <h3>Personal Details</h3>
+    <p>Full Name: <span th:text="${employee.personalDetails.fullName}">John Doe</span></p>
+    <p>Date of Birth: <span th:text="${employee.personalDetails.dateOfBirth}">1990-01-01</span></p>
+    <!-- Add other personal details -->
+
+    <h3>Professional Details</h3>
+    <p>Employment Code: <span th:text="${employee.employmentCode}">E12345</span></p>
+    <p>Company Email: <span th:text="${employee.professionalDetails.companyMail}">john.doe@company.com</span></p>
+    <!-- Add other professional details -->
+
+    <h3>Project Details</h3>
+    <div th:if="${employee.projects}">
+        <ul>
+            <li th:each="project : ${employee.projects}">
+                <span th:text="${project.clientName}">Project X</span> - 
+                <span th:text="${project.startDate}">2023-01-01</span> to 
+                <span th:text="${project.endDate}">2023-06-30</span>
+            </li>
+        </ul>
+    </div>
+    <div th:if="${!employee.projects}">
+        <p>No projects assigned.</p>
+    </div>
+
+    <h3>Finance</h3>
+    <p>Pan Card: <span th:text="${employee.finance.panCard}">ABCDE1234F</span></p>
+    <!-- Add other finance details -->
+</body>
+</html>
