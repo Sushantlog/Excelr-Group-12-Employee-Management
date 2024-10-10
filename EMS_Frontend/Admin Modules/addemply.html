@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="addemplystyle.css"> <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="dashboard-container">
+        <header>
+        <a href="addemply.html" style="text-decoration: none; color: black;"><h1>Add Employee</h1></a> 
+            <nav class="navbar">
+                <ul>
+                    <li><a href="admin.html">Back to Dashboard</a></li>
+                    <li><a href="totalemply.html">View All employees</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="container">
+            <h2>Add a New Employee</h2>
+            <form id="employeeForm">
+                <div class="flex-container">
+                    <!-- Personal Details -->
+                    <fieldset class="half-width">
+                        <legend>Personal Details</legend>
+                        <label for="full_name">Name:</label>
+                        <input type="text" id="full_name" name="full_name" required>
+                        
+                        <label for="dob">Date of Birth:</label>
+                        <input type="date" id="dob" name="dob" required onchange="calculateAge()">
+                        
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" name="age" readonly required>
+                        
+                        <label for="gender">Gender:</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+
+                        <label for="current_address">Current Address:</label>
+                        <input type="text" id="current_address" name="current_address" required>
+
+                        <label for="permanent_address">Permanent Address:</label>
+                        <input type="text" id="permanent_address" name="permanent_address" required>
+
+                        <label for="mobile_number">Mobile Number:</label>
+                        <input type="tel" id="mobile_number" name="mobile_number" pattern="\d{10}" required>
+
+                        <label for="optional_number">Optional Number:</label>
+                        <input type="tel" id="optional_number" name="optional_number" pattern="\d{10}">
+
+                        <label for="employment_code">Employee Code:</label>
+                        <input type="text" id="employment_code" name="employment_code" maxlength="6" required>
+
+                        <label for="company_email">Company Mail ID:</label>
+                        <input type="email" id="company_email" name="company_email" required>
+                    </fieldset>
+
+                    <!-- Professional Details -->
+                    <fieldset class="half-width">
+                        <legend>Professional Details</legend>
+                        <label for="office_phone">Office Phone Number:</label>
+                        <input type="tel" id="office_phone" name="office_phone" pattern="\d{8,12}" required>
+
+                        <label for="reporting_manager_name">Reporting Manager Name:</label>
+                        <input type="text" id="reporting_manager_name" name="reporting_manager_name" required>
+
+                        <label for="reporting_manager_code">Reporting Manager Code:</label>
+                        <input type="text" id="reporting_manager_code" name="reporting_manager_code" required>
+
+                        <label for="reporting_manager_email">Reporting Manager Email:</label>
+                        <input type="email" id="reporting_manager_email" name="reporting_manager_email" required>
+
+                        <label for="date_of_joining">Date of Joining:</label>
+                        <input type="date" id="date_of_joining" name="date_of_joining" required>
+
+                        <label for="office_address_line1">Office Address Line 1:</label>
+                        <input type="text" id="office_address_line1" name="office_address_line1" required>
+
+                        <label for="office_address_line2">Office Address Line 2:</label>
+                        <input type="text" id="office_address_line2" name="office_address_line2" required>
+                    </fieldset>
+                </div>
+
+                <div class="flex-container">
+                    <!-- Project Details -->
+                    <fieldset class="half-width">
+                        <legend>Project Details (Optional)</legend>
+                        <label for="previous_projects">No. of Previous Projects Done:</label>
+                        <input type="number" id="previous_projects" name="previous_projects">
+
+                        <label for="project_name">Current Project Name:</label>
+                        <input type="text" id="project_name" name="project_name">
+
+                        <label for="project_code">Project Code:</label>
+                        <input type="text" id="project_code" name="project_code">
+
+                        <label for="project_start_date">Start Date:</label>
+                        <input type="date" id="project_start_date" name="project_start_date">
+
+                        <label for="project_end_date">End Date:</label>
+                        <input type="date" id="project_end_date" name="project_end_date">
+
+                        <label for="project_manager_name">Reporting Manager Name:</label>
+                        <input type="text" id="project_manager_name" name="project_manager_name">
+
+                        <label for="project_manager_code">Reporting Manager Code:</label>
+                        <input type="text" id="project_manager_code" name="project_manager_code">
+
+                        <label for="project_manager_email">Reporting Manager Email:</label>
+                        <input type="email" id="project_manager_email" name="project_manager_email">
+                    </fieldset>
+
+                    <!-- Finance Details -->
+                    <fieldset class="half-width">
+                        <legend>Finance Details</legend>
+                        <label for="salary">PAN CARD:</label>
+                        <input type="number" id="PAN" name="PAN" required>
+
+                        <label for="bank_account_number">Aadhar Card:</label>
+                        <input type="text" id="Aadhar-card" name="Aadhar_card" required>
+
+                        <label for="Bank_Name">Bank Name:</label>
+                        <input type="text" id="Bank_Name" name="Bank_Name">
+
+                        <label for="bank_account_number">Bank Account Number:</label>
+                        <input type="number" id="bank_account_number" name="bank_account_number" required>
+                        
+                        <label for="bank_branch">Bank Branch:</label>
+                        <input type="text" id="bank_branch" name="bank_branch" required>
+
+                        <label for="ifsc_code">IFSC Code:</label>
+                        <input type="text" id="ifsc_code" name="ifsc_code" required>
+                    </fieldset>
+                </div>
+
+                <button type="submit">Submit</button>
+                <button type="button" onclick="resetForm()">Reset</button> <!-- Updated Reset button -->
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Function to reset the form
+        function resetForm() {
+            document.getElementById("employeeForm").reset(); // Reset form fields
+        }
+
+        // Function to calculate age
+        function calculateAge() {
+            const dob = document.getElementById('dob').value;
+            const dobDate = new Date(dob);
+            const diff = Date.now() - dobDate.getTime();
+            const ageDate = new Date(diff);
+            const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+            document.getElementById('age').value = age;
+        }
+
+        // Form validation function (if needed)
+        function validateForm() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return false;
+            }
+            return true;  // Form is valid
+        }
+    </script>
+</body>
+</html>

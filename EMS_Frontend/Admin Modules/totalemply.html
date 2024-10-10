@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="totalemplystyle.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="container mt-2">
+            <div class="row g-2">
+                <div class="col-md-4 mb-2 text-center">
+                    <h1><a href="admin.html" style="text-decoration: none; color: black;">Admin Dashboard</a></h1>
+                </div>
+                <div class="col-md-4 mb-2 text-center">
+                    <form action="" method="post">
+                        <input type="text" id="searchBar" class="form-control" placeholder="Search for employees...">
+                    </form>
+                </div>
+                <div class="col-md-4 mb-2 text-center">
+                    <button class="btn btn-info">
+                        <a href="addemply.html" style="text-decoration: none; color:white; font-weight: bold;">Add Employee</a>
+                    </button>
+                    <button class="btn btn-info">Log Out</button>
+                </div>
+            </div>
+        </div>
+            
+        <section class="employee-details">
+            <div class="row">
+                <div class="col-md-12">
+                   <h2>Employee Details</h2>
+                </div>
+                <div class="col-md-12 table-responsive">
+                    <table id="employeeTable">
+                        <thead>
+                            <tr>
+                                <th>Employee ID</th>
+                                <th>Name</th>
+                                <th>Mail</th>
+                                <th>Phone</th>
+                                <th>Current Project</th>
+                                <th>Action Buttons</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Emp101</td>
+                                <td>John Doe</td>
+                                <td>john.doe@example.com</td>
+                                <td>1234567890</td>
+                                <td>Project Alpha</td>
+                                <td>
+                                    <button class="btn btn-success py-1">View</button>
+                                    <button class="btn btn-warning">Update</button>
+                                    <button class="btn btn-danger">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Emp201</td>
+                                <td>Jane Smith</td>
+                                <td>jane.smith@example.com</td>
+                                <td>0987654321</td>
+                                <td>Project Beta</td>
+                                <td>
+                                  <a href="singleemply.html" style="text-decoration: none;"><button class="btn btn-success">View</button></a>
+                                   <a href="updatepage.html" style="text-decoration: none;"><button class="btn btn-warning">Update</button></a>
+                                    <button class="btn btn-danger">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Emp301</td>
+                                <td>Michael Lee</td>
+                                <td>michael.lee@example.com</td>
+                                <td>1231231234</td>
+                                <td>Project Gamma</td>
+                                <td>
+                                    <button class="btn btn-success">View</button>
+                                    <button class="btn btn-warning">Update</button>
+                                    <button class="btn btn-danger">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js" integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // JavaScript to filter the employee table based on the search input
+        const searchBar = document.getElementById('searchBar');
+        const table = document.getElementById('employeeTable');
+        const rows = table.getElementsByTagName('tr');
+
+        searchBar.addEventListener('input', function() {
+            const searchTerm = searchBar.value.toLowerCase();
+
+            for (let i = 1; i < rows.length; i++) {  // Start from 1 to skip the table header
+                const row = rows[i];
+                const cells = row.getElementsByTagName('td');
+                let rowText = '';
+                
+                for (let j = 0; j < cells.length - 1; j++) { // Exclude action buttons column
+                    rowText += cells[j].textContent.toLowerCase();
+                }
+
+                if (rowText.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
