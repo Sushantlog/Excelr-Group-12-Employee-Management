@@ -82,7 +82,7 @@ The finance section includes personal financial data like PAN, Aadhar, and bank 
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/ems-backend.git
+   git clone https://github.com/Sushantlog/Excelr-Group-12-Employee-Management.git
    cd ems-backend
 
 2. **Set up Development Environment:**
