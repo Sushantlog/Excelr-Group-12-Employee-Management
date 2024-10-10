@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Employee - Admin</title>
+    <link rel="stylesheet" href="/css/adminUpdate.css"> <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="dashboard-container">
+        <header>
+           <h1>Update Employee</h1>
+            <nav class="navbar">
+                <ul>
+                    
+                    <li><a href="/admin/dashboard">View All employees</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="container">
+            <h2>Update Employee Details</h2>
+            <form id="employeeUpdateForm">
+                <div class="flex-container">
+                    <!-- Personal Details -->
+                    <fieldset class="half-width">
+                        <legend>Personal Details</legend>
+                        <label for="full_name">Name:</label>
+                        <input type="text" id="full_name" name="full_name" required>
+                        
+                        <label for="dob">Date of Birth:</label>
+                        <input type="date" id="dob" name="dob" required readonly>
+                        
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" name="age" readonly>
+
+                        <label for="gender">Gender:</label>
+                        <input type="text" id="gender" name="gender" readonly>
+
+                        <label for="current_address_city"> Current City:</label>
+                        <input type="text" id="current_address_city" name="current_address_city" required>
+                        <label for="current_address_pincode">PinCode:</label>
+                            <input type="text" id="current_address_pincode" name="current_address_pincode" required>
+
+                            <label for="current_address_line1"> Current Address Line-1:</label>
+                            <input type="text" id="current_address_line1" name="current_address_line1" required>
+
+                            <label for="current_address_line2"> Current Address Line-2:</label>
+                            <input type="text" id="current_address_line2" name="current_address_line2" required>
+
+                            <label for="permanent_address_city">Permanent City:</label>
+                            <input type="text" id="permanent_address_city" name="permanent_address_city" required>
+
+                            <label for="permanent_address_pincode">PinCode:</label>
+                            <input type="text" id="permanent_address_pincode" name="permanent_address_pincode" required>
+
+                         <label for="permanent_address_line1">Permanent Address Line-1:</label>
+                            <input type="text" id="permanent_address_line1" name="permanent_address_line1" required>
+
+                            <label for="permanent_address_line2">Permanent Address Line-2:</label>
+                            <input type="text" id="permanent_address_line2" name="permanent_address_line2" required>
+                     
+                       
+                        <label for="mobile_number">Mobile Number:</label>
+                        <input type="tel" id="mobile_number" name="mobile_number" pattern="\d{10}" required>
+
+                        <label for="personal_mail">Personal Mail:</label>
+                            <input type="email" id="personal_mail" name="personal_mail" readonly>
+
+                            <label for="emergency_contact_name">Emergency Contact Name:</label>
+                            <input type="text" id="emergency_contact_name" name="emergency_contact_name" required>
+
+                            <label for="emergency_mobile_number">Emgergency Contact:</label>
+                            <input type="tel" id="emergency_mobile_number" name="emergency_mobile_number"
+                                pattern="\d{10}" required>
+
+                             <button class="save-btn" id="personalSaveBtn">Save Personal Details</button>
+                    </fieldset>
+
+                    <!-- Professional Details -->
+                    <fieldset class="half-width">
+                        <legend>Professional Details</legend>
+                        <label for="employment_code">Employment Code:</label>
+                    <input type="text" id="employment_code" name="employment_code" pattern="\d{6}" readonly>
+                    <label for="office_phone">Office Phone Number:</label>
+                    <input type="tel" id="office_phone" name="office_phone" pattern="\d{8,12}" required>
+                    <label for="company_mail">Company Mail:</label>
+                            <input type="email" id="company_mail" name="company_mail" readonly>
+                            <label for="hr_name">Hr Name:</label>
+                            <input type="text" id="hr_name" name="hr_name" required>
+                            <label for="reporting_manager_code">Reporting Manager Code:</label>
+                            <input type="text" id="reporting_manager_code" name="reporting_manager_code" required>
+                            <label for="reporting_manager_email">Reporting Manager Email:</label>
+                            <input type="email" id="reporting_manager_email" name="reporting_manager_email" required>
+                            <label for="date_of_joining">Date of Joining:</label>
+                            <input type="text" id="date_of_joining" name="date_of_joining" readonly required>
+                            <label for="office_address_city">City:</label>
+                            <input type="text" id="office_address_city" name="office_address_city" required>
+                            <label for="office_address_pincode">PinCode:</label>
+                            <input type="text" id="office_address_pincode" name="office_address_pincode" required>
+                            <label for="office_address_line1">Office Address Line 1:</label>
+                            <input type="text" id="office_address_line1" name="office_address_line1" required>
+                            <label for="office_address_line2">Office Address Line 2:</label>
+                            <input type="text" id="office_address_line2" name="office_address_line2" required>
+                            <button class="save-btn" id="professionalSaveBtn">Save Professional Details</button>
+                    </fieldset>
+                </div>
+
+                <div class="flex-container">
+                    <!-- Project Details -->
+                    <fieldset class="half-width">
+                        <legend>Project Details (Optional)</legend>
+                        <label for="previous_projects">No. of Previous Projects Done:</label>
+                        <input type="number" id="previous_projects" name="previous_projects">
+                        <label for="project_name">Current Project Name:</label>
+                            <input type="text" id="project_name" name="project_name">
+                            <label for="project_code">Project Code:</label>
+                            <input type="text" id="project_code" name="project_code">
+                            <label for="project_start_date">Start Date:</label>
+                            <input type="date" id="project_start_date" name="project_start_date">
+                            <label for="project_end_date">End Date:</label>
+                            <input type="date" id="project_end_date" name="project_end_date">
+                            <label for="client_Name">Client Name:</label>
+                            <input type="text" id="client_Name" name="client_Name">
+                            <label for="project_manager_code">Reporting Manager Code:</label>
+                            <input type="text" id="project_manager_code" name="project_manager_code">
+                            <label for="project_manager_email">Reporting Manager Email:</label>
+                            <input type="email" id="project_manager_email" name="project_manager_email">
+                            <button class="save-btn" id="projectSaveBtn">Save Project Details</button>
+                    </fieldset>
+
+                    <!-- Finance Details -->
+                    <fieldset class="half-width">
+                        <legend>Finance Details</legend>
+                        <label for="salary">PAN CARD:</label>
+                    <input type="text" id="PAN" name="PAN" readonly>
+                    <label for="bank_account_number">Aadhar Card:</label>
+                    <input type="text" id="Aadhar-card" name="Aadhar_card" readonly>
+                    <label for="Bank_Name">Bank Name:</label>
+                    <input type="text" id="Bank_Name" name="Bank_Name:" readonly>
+                    <label for="bank_branch">Bank Branch:</label>
+                    <input type="text" id="bank_branch" name="bank_branch" readonly>
+                    <label for="ifsc_code">IFSC Code:</label>
+                    <input type="text" id="ifsc_code" name="ifsc_code" readonly>
+                    <label for="account_number">Bank Account Number:</label>
+                    <input type="text" id="account_number" name="account_number" readonly>
+                    <label for="ctc_breakup">CTC Breakup:</label>
+                    <input type="number" id="ctc_breakup" name="ctc_breakup" readonly>
+                    </fieldset>
+                </div>
+
+                <button type="button" onclick="resetForm()">Reset</button> <!-- Reset button -->
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Function to reset the form
+        function resetForm() {
+            document.getElementById("employeeUpdateForm").reset(); // Reset form fields
+        }
+
+        // Function to calculate age (Optional as DOB is readonly)
+        function calculateAge() {
+            const dob = document.getElementById('dob').value;
+            const dobDate = new Date(dob);
+            const diff = Date.now() - dobDate.getTime();
+            const ageDate = new Date(diff);
+            const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+            document.getElementById('age').value = age;
+        }
+
+
+
+        
+function getQueryParams(param) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(param);
+    }
+        let formData = {};
+        const id = getQueryParams('id');
+        document.getElementById("personalSaveBtn").addEventListener("click", () => {
+            savePersonalData(id);
+        })
+        document.getElementById("professionalSaveBtn").addEventListener("click", () => {
+            saveProfessionalData(id);
+        })
+        document.getElementById("projectSaveBtn").addEventListener("click", () => {
+            saveProjectData(id);
+        })
+        function fetchData() {
+
+            fetch(`http://localhost:8080/api/${id}`)
+                .then(response => response.json())
+                .then(data => {
+
+                    // console.log(data);
+                    // personal
+                    document.getElementById("full_name").value = data.personalDetails.fullName;
+                    document.getElementById("dob").value = data.personalDetails.dob.substr(0, 10);
+                    document.getElementById("age").value = data.personalDetails.age;
+                    document.getElementById("gender").value = data.personalDetails.gender;
+                    document.getElementById("current_address_city").value = data.personalDetails.currentAddress.curr_city;
+                    document.getElementById("current_address_pincode").value = data.personalDetails.currentAddress.curr_pincode;
+                    document.getElementById("current_address_line1").value = data.personalDetails.currentAddress.curr_line1;
+                    document.getElementById("current_address_line2").value = data.personalDetails.currentAddress.curr_line2;
+                    document.getElementById("permanent_address_city").value = data.personalDetails.permanentAddress.perm_city;
+                    document.getElementById("permanent_address_pincode").value = data.personalDetails.permanentAddress.perm_pincode;
+                    document.getElementById("permanent_address_line1").value = data.personalDetails.permanentAddress.perm_line1;
+                    document.getElementById("permanent_address_line2").value = data.personalDetails.permanentAddress.perm_line2;
+                    document.getElementById("mobile_number").value = data.personalDetails.mobile;
+                    document.getElementById("emergency_mobile_number").value = data.personalDetails.emergencyContact;
+                    document.getElementById("emergency_contact_name").value = data.personalDetails.emergencyContactName;
+                    document.getElementById("personal_mail").value = data.personalDetails.personalMail;
+
+                    // professional
+                    document.getElementById("employment_code").value = data.professionalDetails.employmentCode;
+                    document.getElementById("company_mail").value = data.professionalDetails.companyMail;
+                    document.getElementById("hr_name").value = data.professionalDetails.hrName;
+                    document.getElementById("office_phone").value = data.professionalDetails.officePhone;
+                    document.getElementById("reporting_manager_code").value = data.professionalDetails.reportManagerEmployeeCode;
+                    document.getElementById("reporting_manager_email").value = data.professionalDetails.reportManagerEmployeeMail;
+                    document.getElementById("date_of_joining").value = data.professionalDetails.dateOfJoining.substr(0, 10);
+                    document.getElementById("office_address_pincode").value = data.professionalDetails.officeAddress.curr_pincode;
+                    document.getElementById("office_address_city").value = data.professionalDetails.officeAddress.curr_city;
+                    document.getElementById("office_address_line1").value = data.professionalDetails.officeAddress.curr_line1;
+                    document.getElementById("office_address_line2").value = data.professionalDetails.officeAddress.curr_line2;
+
+                    // projects
+                    let n = data.projects?.length;
+                    document.getElementById("previous_projects").value = data.projects?.length;
+                    document.getElementById("project_name").value = data.projects[n - 1]?.projectName;
+                    document.getElementById("project_code").value = data.projects[n - 1]?.projectCode;
+                    document.getElementById("project_start_date").value = data.projects[n - 1]?.startDate?.substr(0, 10);;
+                    document.getElementById("project_end_date").value = data.projects[n - 1]?.endDate?.substr(0, 10);
+                    document.getElementById("client_Name").value = data.projects[n - 1]?.clientName;
+                    document.getElementById("project_manager_code").value = data.projects[n - 1]?.reportingManagerEmployeeCode;
+                    document.getElementById("project_manager_email").value = data.projects[n - 1]?.reportingManagerEmployeeMail;
+
+                    document.getElementById('PAN').value = data.financeDetails.panCard;
+                    document.getElementById('Aadhar-card').value = data.financeDetails.aadharCard;
+                    document.getElementById('Bank_Name').value = data.financeDetails.bankName;
+                    document.getElementById('bank_branch').value = data.financeDetails.branch;
+                    document.getElementById('ctc_breakup').value = data.financeDetails.ctcBreakup;
+                    document.getElementById('ifsc_code').value = data.financeDetails.ifscCode;
+                    document.getElementById('account_number').value = data.financeDetails.accountNumber;
+
+                    formData = data;
+                })
+                .catch(error => console.error("Error fetching data:", error));
+        }
+
+
+        function savePersonalData(id) {
+            const personalDetails = {
+                "fullName": document.getElementById("full_name").value,
+                "dob": document.getElementById("dob").value,
+                "age": document.getElementById("age").value,
+                "gender": document.getElementById("gender").value,
+                "currentAddress": {
+                    "curr_city": document.getElementById("current_address_city").value,
+                    "curr_line1": document.getElementById("current_address_line1").value,
+                    "curr_line2": document.getElementById("current_address_line2").value,
+                    "curr_pincode": parseInt(document.getElementById("current_address_pincode").value)
+                },
+                "permanentAddress": {
+                    "perm_city": document.getElementById("permanent_address_city").value,
+                    "perm_line1": document.getElementById("permanent_address_line1").value,
+                    "perm_line2": document.getElementById("permanent_address_line2").value,
+                    "perm_pincode": parseInt(document.getElementById("permanent_address_pincode").value)
+                },
+                "mobile": document.getElementById("mobile_number").value,
+                "emergencyContactName": document.getElementById("emergency_contact_name").value,
+                "emergencyContact": document.getElementById("emergency_mobile_number").value
+            };
+            Update(`http://localhost:8080/api/personal/${id}`, personalDetails);
+        }
+
+        function saveProfessionalData(id) {
+            const professionalDetails = {
+                "employmentCode": document.getElementById("employment_code").value,
+                "companyMail": document.getElementById("company_mail").value,
+                "officePhone": document.getElementById("office_phone").value,
+                "officeAddress": {
+                    "curr_city": document.getElementById("office_address_city").value,
+                    "curr_line1": document.getElementById("office_address_line1").value,
+                    "curr_line2": document.getElementById("office_address_line2").value,
+                    "curr_pincode": document.getElementById("office_address_pincode").value
+                },
+                "employmentHistory": [],
+                "office_phone": document.getElementById("office_phone").value,
+                "reporting_manager_code": document.getElementById("reporting_manager_code").value,
+                "reporting_manager_email": document.getElementById("reporting_manager_email").value,
+                "date_of_joining": document.getElementById("date_of_joining").value,
+                "office_address_line1": document.getElementById("office_address_line1").value,
+                "office_address_line2": document.getElementById("office_address_line2").value,
+            };
+            Update(`http://localhost:8080/api/professional/${id}`, professionalDetails);
+        }
+
+
+        function saveProjectData(id) {
+
+            const projectDetails = [{
+                "projectName": document.getElementById("project_name").value,
+                "projectCode": document.getElementById("project_code").value,
+                "startDate": document.getElementById("project_start_date").value,
+                "endDate": document.getElementById("project_end_date").value,
+                "reportingManagerEmployeeCode": document.getElementById("project_manager_code").value,
+                "reportingManagerEmployeeMail": document.getElementById("project_manager_email").value,
+                "clientName": document.getElementById("client_Name").value,
+            }];
+
+            Update(`http://localhost:8080/api/projects/${id}`, projectDetails);
+        }
+
+        function Update(url, modifiedData) {
+            console.log(modifiedData);
+
+            fetch(url, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(modifiedData),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        fetchData();
+                        return response.text();
+                    } else {
+                        return Promise.reject("Failed to update data. Status: " + response.status);
+                    }
+                })
+                .then(data => {
+                    console.log("Data updated successfully:", data);
+                    Toastify({
+                        text: "Data updated successfully!",
+                        duration: 3000,
+                        close: true,
+                        gravity: "top",
+                        position: "center",
+                        style: { background: "#4CAF50" },
+                    }).showToast();
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    Toastify({
+                        text: "Failed to updated data",
+                        duration: 3000,
+                        close: true,
+                        gravity: "top",
+                        position: "center",
+                        style: {
+                            background: "red"
+                        },
+                    }).showToast();
+                });
+        }
+        // Fetch data when the page loads
+        window.onload = fetchData;
+
+    </script>
+</body>
+</html>

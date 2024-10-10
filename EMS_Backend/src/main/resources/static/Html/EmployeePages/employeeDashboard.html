@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard & Personal Information</title>
+    
+    <!-- CSS for Font Awesome and Material Symbols -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="/css/empPersonal.css"><!-- Your external styles -->
+
+</head>
+
+    <script>
+        let id;
+        // Function to fetch personal details of the employee
+        
+        function delay(ms) {
+               return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        
+        async function fetchLoginInfo(){
+        	try{
+        		const [data] = await Promise.all([
+                    fetch("http://localhost:8080/details").then(res => res.json()),
+                    delay(1000)
+                ]);
+        		console.log("login: "+data);
+        		id=data.id;
+        		localStorage.setItem("employeeId",id);
+        		fetchPersonalDetails();
+        		document.getElementById('loader').style.display = 'none'; 
+  	            document.getElementById('dashboard').style.display = 'flex';
+        	}
+        	catch(error){
+        		console.error('Error fetching login details:', error);
+        		document.getElementById('loader').style.display = 'none';
+        	}
+        }
+        
+        async function fetchPersonalDetails() {
+            try {
+                const response = await fetch(`http://localhost:8080/api/${id}`);
+                const data = await response.json();
+                console.log(data);
+                // Populate the form fields with the fetched data
+                document.querySelector('input[name="Name"]').value = data.personalDetails.fullName;
+                document.querySelector('input[name="Date of birth"]').value = data.personalDetails.dob.substr(0,10);
+                document.querySelector('input[name="Age"]').value = data.personalDetails.age;
+                document.querySelector('input[name="Gender"]').value = data.personalDetails.gender;
+                document.querySelector('input[name="Current address"]').value = data.personalDetails.currentAddress.curr_city;
+                document.querySelector('input[name="Current address Line-1"]').value = data.personalDetails.currentAddress.curr_line1;
+                document.querySelector('input[name="Current address Line-2"]').value = data.personalDetails.currentAddress.curr_line2;
+                document.querySelector('input[name="Current Pin Code"]').value = data.personalDetails.currentAddress.curr_pincode;
+                document.querySelector('input[name="Permanent address"]').value = data.personalDetails.permanentAddress.perm_city;
+                document.querySelector('input[name="Permanent address Line-1"]').value = data.personalDetails.permanentAddress.perm_city;
+                document.querySelector('input[name="Permanent address Line-2"]').value = data.personalDetails.permanentAddress.perm_line1;
+                document.querySelector('input[name="Permanent address Pincode"]').value = data.personalDetails.permanentAddress.perm_pincode;
+                document.querySelector('input[name="Mobile Number"]').value = data.personalDetails.mobile;
+                document.querySelector('input[name="Emergency Contact"]').value = data.personalDetails.emergencyContact;
+                document.querySelector('input[name="Emergency Contact Name"]').value = data.personalDetails.emergencyContactName;
+                document.querySelector('input[name="Employee code"]').value = data.employmentCode;
+                document.querySelector('input[name="Company Mail ID"]').value = data.companyMail;
+
+                document.querySelector(".name").textContent=data.personalDetails.fullName
+                document.querySelector(".mail").textContent=data.personalDetails.personalMail;
+                document.querySelector(".welcome_note").textContent="Employee Name: , "+data.personalDetails.fullName;
+            } catch (error) {
+                console.error('Error fetching personal details:', error);
+            }
+        }
+
+        // Fetch data when the page loads
+        document.addEventListener('DOMContentLoaded', fetchLoginInfo);
+   
+</script>
+
+<body>
+    <div id="main" class="main">
+        <!-- Sidebar Navbar -->
+        <div id="navbar" class="navbar">
+            <div class="profile-section">
+                <img src="/images/image.png" alt="Profile Picture" class="profile-pic">
+                <br>
+                <span class="username">Soumya</span> <!-- Example username -->
+                <span class="dropdown-arrow"></span>
+            </div>
+            <ul class="menu">
+                <a href="/employee/dashboard">
+                    <li class="menu-item">
+                        <span class="material-symbols-outlined">person</span>&nbsp; Personal 
+                    </li>
+                </a>
+                <a href="/employee/professional">
+                    <li class="menu-item">
+                        <span class="material-symbols-outlined">work</span>&nbsp; Professional
+                    </li>
+                </a>
+                <a href="/employee/projects">
+                    <li class="menu-item">
+                        <span class="material-symbols-outlined">info</span>&nbsp; Project
+                    </li>
+                </a>
+                <a href="/employee/finance">
+                    <li class="menu-item">
+                        <span class="material-symbols-outlined">description</span>&nbsp; Finance
+                    </li>
+                </a>
+            </ul>
+        </div>
+
+        <!-- Main Content: Employee Dashboard and Personal Information -->
+        <div class="profile-info">
+            <div>
+                <h1 class="heading">Employee Dashboard</h1>
+                <div class="logout">
+                    <button class="logout-button">LOGOUT</button>
+                </div>
+                <div class="profile-description">
+                    <div class="img">
+                        <img class="profile-img" src="/images/image.png" alt="Profile Image">
+                    </div>
+                    <div class="welcome_note">
+                        <strong>Employee Name:</strong> Soumya
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personal Information Section -->
+            <div class="info-section">
+                <h2><i class="fas fa-user"></i> Personal Details</h2>
+
+                <div class="info-row">
+                    <label><i class="fas fa-user-circle"></i> Name</label>
+                    <input type="text" id="personalname" name="Name" class="info-box" value="John Doe">
+                </div>
+                <div class="info-row">
+                    <label><i class="fas fa-calendar-alt"></i> Date Of Birth</label>
+                    <input type="text" id="personaldob"  name="Date of birth" class="info-box" value="1990-01-01">
+                </div>
+                <div class="info-row">
+                    <label><i class="fas fa-hourglass-half"></i> Age</label>
+                    <input type="text" id="age" name="Age" class="info-box" value="34">
+                </div>
+                <div class="info-row">
+                    <label><i class="fas fa-venus-mars"></i> Gender</label>
+                    <input type="text" id="gender" name="Gender" class="info-box" value="Male">
+                </div>
+                <div class="info-row">
+                    <label><i class="fas fa-map-marker-alt"></i> Current Address City</label>
+                    <input type="text" id="currentaddress" name="Current address" class="info-box" value="123 Street, City, Country">
+                </div>
+                <div class="info-row">
+                    <label><i class="fas fa-map-marker-alt"></i> Current Address Line1</label>
+                    <input type="text" id="currentaddress" name="Current address Line-1" class="info-box" value="123 Street, City, Country">
+                </div>
+                <div class="info-row">
+                    <label><i class="fas fa-map-marker-alt"></i> Current Address Line2</label>
+                    <input type="text" id="currentaddress" name="Current address Line-2" class="info-box" value="123 Street, City, Country">
+                </div>
+                <div class="info-row">
+                    <label><i class="fas fa-map-marker-alt"></i> Current Address pincode</label>
+                    <input type="text" id="currentaddress" name="Current Pin Code" class="info-box" value="123 Street, City, Country">
+                </div>
+                <div class="info-row">
+                    <label><i class="fas fa-home"></i> Permanent Address city</label>
+                    <input type="text" id="permanentaddress" name="Permanent address" class="info-box" value="456 Street, City, Country">
+                </div>
+                <div class="info-row">
+                    <label><i class="fas fa-home"></i> Permanent Address Line1</label>
+                    <input type="text" id="permanentaddress"name="Permanent address Line1" class="info-box" value="456 Street, City, Country">
+                </div>
+                <div class="info-row">
+                    <label><i class="fas fa-home"></i> Permanent Address Line2</label>
+                    <input type="text" id="permanentaddress"name="Permanent address Line2" class="info-box" value="456 Street, City, Country">
+                </div>
+                <div class="info-row">
+                    <label><i class="fas fa-home"></i> Permanent Address Pincode</label>
+                    <input type="text" id="permanentaddress"name="Permanent address Pincode" class="info-box" value="456 Street, City, Country">
+                </div>
+                <div class="info-row">
+                    <label><i class="fas fa-mobile-alt"></i> Mobile Number</label>
+                    <input type="text" id="mobile" name="Mobile Number" class="info-box" value="+1234567890">
+                </div>
+                <div class="info-row">
+                    <label><i class="fas fa-phone-alt"></i> Emergency Contact</label>
+                    <input type="text" id="optional" name="Emergency Contact" class="info-box" value="+0987654321">
+                </div>
+                <div class="info-row">
+                    <label><i class="fas fa-id-badge"></i> Emergency Contact Name</label>
+                    <input type="text" id="emplycode" name="Emergency Contact Name" class="info-box" >
+                </div>
+               
+            </div>
+
+            <!-- Return to Dashboard Button -->
+         
+        </div>
+    </div>
+
+</body>
+
+</html>

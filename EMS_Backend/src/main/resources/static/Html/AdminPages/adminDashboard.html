@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/adminDashboard.css">
+  <script src="https://kit.fontawesome.com/2edfbc5391.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <style>
+    /* General body styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    header {
+      background: rgb(7, 181, 229);
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-size: 1.5rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      z-index: 10;
+    }
+
+    .logout_btn {
+      background: #ffffff;
+      border-radius: 15px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #000000;
+      padding: 5px 10px;
+      text-decoration: none;
+      transition: background 0.5s;
+      position: absolute;
+      right: 20px;
+      top: 10px;
+    }
+
+    .logout_btn:hover {
+      background: #d1ba37;
+    }
+
+    /* Sidebar styling */
+    .sidebar {
+      background: rgb(56, 200, 237);
+      padding-top: 50px;
+      width: 220px;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    .sidebar a:hover {
+      background-color: #0077aa;
+    }
+
+    .sidebar img {
+      width: 100px;
+      height: auto;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .sidebar center {
+      margin-bottom: 20px;
+    }
+
+    /* Content area */
+    .content {
+      margin-left: 220px;
+      padding: 60px 20px 20px;
+      width: calc(100% - 220px);
+      overflow-y: auto;
+    }
+
+    .employee-details {
+      margin-top: 20px;
+      height: 400px;
+      overflow-y: scroll;
+    }
+
+    table {
+      background-color: aliceblue;
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f4f4f4;
+    }
+
+    /* Button styles */
+    .btn {
+      padding: 8px 16px;
+      margin: 4px;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      display: inline-block;
+      font-size: 14px;
+    }
+
+    .btn-success {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .btn-warning {
+      background-color: #ffc107;
+      color: white;
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <!--header area start-->
+  <header>
+    <div class="left_area">
+      Admin Dashboard <span><a href="#" class="logout_btn">Logout</a></span>
+    </div>
+  </header>
+  <!--header area end-->
+
+  <!--sidebar start-->
+  <div class="sidebar">
+    <center>
+      <img src="/images/ems_photo.png" class="profile_image" alt="EMS Logo">
+      <h3>Admin</h3>
+    </center>
+    <a href="/admin/dashboard"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+    <a href="/admin/create"><i class="fas fa-user-plus"></i><span>Add Employee</span></a>
+   
+  </div>
+  <!--sidebar end-->
+
+  <!--content area-->
+  <div class="content">
+    <div class="employee-details">
+      <h2>Employee Details</h2>
+      <table id="employeeTable">
+        <thead>
+          <tr>
+            <th>Employee ID</th>
+            <th>Name</th>
+            <th>Mail</th>
+            <th>Manager Name</th>
+            <th>Project</th>
+            <th>Action Buttons</th>
+          </tr>
+        </thead>
+        <tbody id="employee-table-body">
+          <!-- Dynamic content will be inserted here -->
+        </tbody>
+      </table>
+      
+    </div>
+  </div>
+  <!--content end-->
+  <script>
+    let data = [];
+    let currentPage = 1;
+    const recordsPerPage = 10;
+
+    function delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function fetchAllEmployees() {
+      try {
+        const [response] = await Promise.all([
+          fetch('http://localhost:8080/api/list').then(res => res.json()),
+          delay(1000)
+        ]);
+
+        data = response;
+        displayData(getPageData(data, currentPage));
+        updatePaginationControls();
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+      } catch (error) {
+        console.error('Error fetching employee data:', error);
+        document.getElementById('loader').style.display = 'none';
+      }
+    }
+
+    window.onload = fetchAllEmployees;
+
+    function getPageData(data, page) {
+      const startIndex = (page - 1) * recordsPerPage;
+      const endIndex = startIndex + recordsPerPage;
+      return data.slice(startIndex, endIndex);
+    }
+
+    function displayData(pageData) {
+      const tableBody = document.getElementById('employee-table-body');
+      tableBody.innerHTML = '';
+
+      if (pageData.length === 0) {
+        const noDataRow = document.createElement('tr');
+        noDataRow.innerHTML = `<td colspan="6" style="text-align: center;">No data is available</td>`;
+        tableBody.appendChild(noDataRow);
+        return;
+      }
+
+      pageData.forEach(employee => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${employee.employmentCode}</td>
+          <td>${employee.personalDetails.fullName}</td>
+          <td>${employee.companyMail}</td>
+          <td>${employee.professionalDetails.hrName}</td>
+          <td>${employee.projects.length > 0 ? employee.projects[0].projectName : 'No Project Assigned'}</td>
+          <td>
+            <button class="btn btn-success" onclick="navigate_to_view(${employee.id})">View</button>
+            <button class="btn btn-warning" onclick="navigate_to_update(${employee.id})">Update</button>
+            <button class="btn btn-danger" onclick="deleteEmployee(${employee.id})">Delete</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    function updatePaginationControls() {
+      const totalPages = Math.ceil(data.length / recordsPerPage);
+      const pageInfo = document.getElementById('page-info');
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+
+      pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+      prevBtn.disabled = currentPage === 1;
+      nextBtn.disabled = currentPage === totalPages;
+    }
+
+    function nextPage() {
+      currentPage++;
+      displayData(getPageData(data, currentPage));
+      updatePaginationControls();
+    }
+
+    function prevPage() {
+      currentPage--;
+      displayData(getPageData(data, currentPage));
+      updatePaginationControls();
+    }
+
+    function navigate_to_view(id) {
+  window.location.href = `/admin/view_employee/${id}`;
+}
+
+
+    function navigate_to_update(id) {
+      window.location.href = `/update_employee/${id}`;
+    }
+
+    async function deleteEmployee(id) {
+      if (!confirm('Are you sure you want to delete this employee?')) {
+        return;
+      }
+
+      try {
+        await fetch(`http://localhost:8080/api/employees/${id}`, { method: 'DELETE' });
+        alert('Employee deleted successfully.');
+        fetchAllEmployees();
+      } catch (error) {
+        console.error('Error deleting employee:', error);
+      }
+    }
+  </script>
+</body>
+
+</html>

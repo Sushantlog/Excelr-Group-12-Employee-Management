@@ -1,0 +1,135 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Navbar Section */
+.navbar {
+    width: 250px;
+    background-color: #333;
+    height: 100vh;
+    padding: 20px;
+    position: fixed;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-item {
+    padding: 15px 0;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.menu-item i {
+    margin-right: 10px;
+}
+
+.menu-item:hover {
+    background-color: #575757;
+    border-radius: 4px;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* Profile Info Section */
+.profile-info {
+    margin-left: 300px;
+    padding: 20px;
+}
+
+.heading {
+    color: #007bff;
+}
+
+.profile-description {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.profile-information {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.logout-button {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Professional Details Section */
+.personal-info {
+    margin-left: 300px;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-row {
+    margin-bottom: 15px;
+    display: flex; /* Use flexbox to align items side by side */
+    align-items: center; /* Vertically center the label and input */
+}
+
+label {
+    width: 30%; /* Control the label width */
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.info-box {
+    width: 70%; /* Adjust the input box width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.info-box:focus {
+    border-color: #007bff;
+    outline: none;
+}

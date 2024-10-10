@@ -1,0 +1,140 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    width: 100%;
+    padding: 20px;
+}
+
+/*header {
+    background-color: #343a40;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+}*/
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #fff;
+}
+
+/* Container for the form */
+.container {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 800px; /* Reduced size */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Flex container for the fieldsets */
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Fieldset and legend styles */
+fieldset {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: calc(50% - 20px);
+    border-radius: 8px;
+}
+
+legend {
+    font-weight: bold;
+    color: #333;
+    padding: 0 10px;
+}
+
+/* Form label and input styles */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input[type="text"]:read-only,
+input[type="email"]:read-only,
+input[type="tel"]:read-only,
+input[type="number"]:read-only,
+input[type="date"]:read-only {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+}
+
+/* Button styles */
+button[type="submit"],
+button[type="button"] {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+button[type="button"] {
+    background-color: #6c757d;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button[type="button"]:hover {
+    background-color: #5a6268;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .flex-container {
+        flex-direction: column;
+    }
+
+    fieldset {
+        width: 100%;
+    }
+}

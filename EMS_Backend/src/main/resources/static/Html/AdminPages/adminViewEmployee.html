@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+   
+    <link rel="stylesheet" href="/css/admin-view.css"> <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+</head>
+<body>
+    <script>
+        /*function getQueryParams(param) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(param);
+    }
+
+    // Display the name from the query string
+    
+        // Function to fetch personal details of the employee
+        async function fetchPersonalDetails() {
+            const id = getQueryParams('id');
+            console.log("accesing id",id);*/
+
+            function getEmployeeIdFromPath() {
+    const path = window.location.pathname;
+    const segments = path.split('/');
+    return segments[segments.length - 1];  // Assuming the ID is at the end of the URL
+}
+
+async function fetchPersonalDetails() {
+    const id = getEmployeeIdFromPath();  // Extract ID from the path
+    console.log("Fetching details for employee ID:", id);
+            try {
+                const response = await fetch(`http://localhost:8080/api/${id}`); // Your backend endpoint
+                const data = await response.json();
+                console.log(data);
+                // Populate the form fields with the fetched data
+                document.querySelector('input[name="full_name"]').value = data.personalDetails.fullName;
+                document.querySelector('input[name="dob"]').value = data.personalDetails.dob.substr(0,10);
+                document.querySelector('input[name="age"]').value = data.personalDetails.age;
+                document.querySelector('input[name="gender"]').value = data.personalDetails.gender;
+                document.querySelector('input[name="current_address"]').value = data.personalDetails.currentAddress.curr_city;
+                document.querySelector('input[name="current_address_line1"]').value = data.personalDetails.currentAddress.curr_line1;
+                document.querySelector('input[name="current_address_line2"]').value = data.personalDetails.currentAddress.curr_line2;
+                document.querySelector('input[name="current_pincode"]').value = data.personalDetails.currentAddress.curr_pincode;
+                document.querySelector('input[name="permanent_address"]').value = data.personalDetails.permanentAddress.perm_city;
+                document.querySelector('input[name="permanent_address_line1"]').value = data.personalDetails.permanentAddress.perm_city;
+                document.querySelector('input[name="permanent_address_line2"]').value = data.personalDetails.permanentAddress.perm_line1;
+                document.querySelector('input[name="permanent_address_pincode"]').value = data.personalDetails.permanentAddress.perm_pincode;
+                document.querySelector('input[name="mobile_number"]').value = data.personalDetails.mobile;
+                document.querySelector('input[name="emergency_contact"]').value = data.personalDetails.emergencyContact;
+                document.querySelector('input[name="emergency_contact_name"]').value = data.personalDetails.emergencyContactName;
+                document.querySelector('input[name="employment_code"]').value = data.employmentCode;
+                document.querySelector('input[name="company_email"]').value = data.companyMail;
+                
+                document.querySelector('input[name="employment_Code"]').value = data.professionalDetails.employmentCode;
+                document.querySelector('input[name="company_Email"]').value = data.professionalDetails.companyMail;
+                document.querySelector('input[name="office_phone"]').value = data.professionalDetails.officePhone;
+                document.querySelector('input[name="hr_name"]').value = data.professionalDetails.hrName;
+                document.querySelector('input[name="reporting_manager_code"]').value = data.professionalDetails.reportManagerEmployeeCode;
+                document.querySelector('input[name="reporting_manager_email"]').value = data.professionalDetails.reportManagerEmployeeMail;
+                document.querySelector('input[name="date_of_joining"]').value = data.professionalDetails.dateOfJoining.substr(0, 10);
+                document.querySelector('input[name="current_city"]').value = data.professionalDetails.officeAddress.curr_city;
+                document.querySelector('input[name="office_address_line1"]').value = data.professionalDetails.officeAddress.curr_line1;
+                document.querySelector('input[name="office_address_line2"]').value = data.professionalDetails.officeAddress.curr_line2;
+                document.querySelector('input[name="pincode"]').value = data.professionalDetails.officeAddress.curr_pincode;
+
+                document.querySelector('input[name="previous_projects"]').value=data.projects?.length;
+                document.querySelector('input[name="project_name"]').value=data.projects[0]?.projectName;
+                document.querySelector('input[name="project_code"]').value=data.projects[0]?.projectCode;
+                document.querySelector('input[name="project_start_date"]').value=data.projects[0]?.startDate.substr(0,10);
+                document.querySelector('input[name="project_end_date"]').value=data.projects[0]?.endDate.substr(0,10);
+                document.querySelector('input[name="project_manager_name"]').value=data.projects[0]?.clientName;
+                document.querySelector('input[name="project_manager_code"]').value=data.projects[0]?.reportingManagerEmployeeCode;
+                document.querySelector('input[name="project_manager_email"]').value=data.projects[0]?.reportingManagerEmployeeMail;
+
+                document.querySelector('input[name="PAN"]').value = data.financeDetails.panCard;
+                document.querySelector('input[name="Aadhar_card"]').value = data.financeDetails.aadharCard;
+                document.querySelector('input[name="Bank_Name"]').value = data.financeDetails.bankName;
+                document.querySelector('input[name="bank_branch"]').value = data.financeDetails.branch;
+                document.querySelector('input[name="ifsc_code"]').value = data.financeDetails.ifscCode;
+                document.querySelector('input[name="account_number"]').value = data.financeDetails.accountNumber;
+                document.querySelector('input[name="ctc"]').value = data.financeDetails.ctcBreakup;
+            } catch (error) {
+                console.error('Error fetching personal details:', error);
+            }
+        }
+        window.onload=fetchPersonalDetails;
+        
+
+    </script>
+    <div class="dashboard-container">
+        <header>
+            <nav class="navbar">
+                <ul>
+                    <!-- <li><a href="#">Add Employee</a></li>
+                    <li><a href="#">Admin Name</a></li> -->
+                    <li><a href="/admin/dashboard">Dashboard</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="container">
+            <h2>View Employee full details</h2><br>
+            <div class="flex-container">
+                <!-- Personal Details -->
+                <fieldset class="half-width">
+                    <legend>Personal Details</legend>
+                    <label for="full_name">Name:</label>
+                    <input type="text" id="full_name" name="full_name" required>
+                    
+                    <div class="row">
+                        <div>
+                            <label for="dob">Date of Birth:</label>
+                            <input type="text" id="dob" name="dob" required>
+                        </div>
+                        <div>
+                            <label for="age">Age:</label>
+                            <input type="number" id="age" name="age" readonly required>
+                        </div>
+                        <div>
+                            <label for="gender">Gender:</label>
+                            <input type="text" id="gender" name="gender" readonly required>
+                        </div>
+                    </div>
+                    
+                    
+                    <h4>Current address</h4>
+                    <div class="row">
+                        <div>
+                            <label for="current_address">City:</label>
+                            <input type="text" id="current_address" name="current_address" required></div>
+                        <div>
+                            <label for="current_pincode">Pin Code:</label>
+                            <input type="number" id="current_pincode" name="current_pincode" required>
+                        </div>
+                    </div>
+                    
+
+                    <div class="row">
+                        <div>
+                            <label for="current_address_line1">Address Line-1:</label>
+                            <input type="text" id="current_address_line1" name="current_address_line1" required></div>
+                        <div>
+                            <label for="current_address_line2">Address Line-2:</label>
+                            <input type="text" id="current_address_line2" name="current_address_line2" required>
+                        </div>
+                        
+                    </div>
+                    
+
+                    
+                    <h4>Permanat Address</h4>
+                    
+                    <div class="row">
+                        <div>
+                            <label for="permanent_address">City:</label>
+                            <input type="text" id="permanent_address" name="permanent_address" required></div>
+                        <div>
+                            <label for="permanent_address_pincode">Pincode:</label>
+                            <input type="number" id="permanent_address_pincode" name="permanent_address_pincode" required>
+                        </div>
+                    </div>
+                    
+
+                    <div class="row">
+                        <div>
+                            <label for="permanent_address_line1">Address Line-1:</label>
+                            <input type="text" id="permanent_address_line1" name="permanent_address_line1" required>   
+                        </div>
+                        <div>
+                            <label for="permanent_address_line2">Address Line-2:</label>
+                        <input type="text" id="permanent_address_line2" name="permanent_address_line2" required>
+                        </div>
+                        
+                    </div>
+
+
+                    
+
+                    <label for="mobile_number">Mobile Number:</label>
+                    <input type="tel" id="mobile_number" name="mobile_number" pattern="\d{10}" required>
+
+                    <div class="row">
+                        <div>
+                            <label for="emergency_contact">Emergency Contact:</label>
+                            <input type="tel" id="emergency_contact" name="emergency_contact" pattern="\d{10}">
+                        </div>
+                        <div>
+                            <label for="emergency_contact_name">Emergency Contact Name:</label>
+                            <input type="text" id="emergency_contact_name" name="emergency_contact_name" >
+                        </div>
+                    </div>
+
+                    
+
+                    <label for="employment_code">Employee Code:</label>
+                    <input type="text" id="employment_code" name="employment_code" maxlength="6" required>
+
+                    <label for="company_email">Company Mail ID:</label>
+                    <input type="email" id="company_email" name="company_email" required>
+                </fieldset>
+
+                <!-- Professional Details -->
+                <fieldset class="half-width">
+                    <legend>Professional Details</legend>
+
+                    <label for="employment_Code">Employee Code:</label>
+                    <input type="text" id="employment_Code" name="employment_Code" maxlength="6" required>
+
+                    <div class="row">
+                        <div>
+                            <label for="company_Email">Company Mail ID:</label>
+                            <input type="email" id="company_Email" name="company_Email" required>
+                        </div>
+                        <div>
+                            <label for="office_phone">Office Phone Number:</label>
+                            <input type="tel" id="office_phone" name="office_phone" pattern="\d{8,12}" required>
+                        </div>
+                    </div>
+                    
+
+                    <label for="hr_name">HR Name:</label>
+                    <input type="text" id="hr_name" name="hr_name" required>
+
+                    <label for="reporting_manager_code">Reporting Manager Code:</label>
+                    <input type="text" id="reporting_manager_code" name="reporting_manager_code" required>
+
+                    <label for="reporting_manager_email">Reporting Manager Email:</label>
+                    <input type="email" id="reporting_manager_email" name="reporting_manager_email" required>
+
+                    <label for="date_of_joining">Date of Joining:</label>
+                    <input type="text" id="date_of_joining" name="date_of_joining" required>
+
+                    <label for="current_city">Current City:</label>
+                    <input type="text" id="current_city" name="current_city" required>
+
+                    <label for="office_address_line1">Office Address Line 1:</label>
+                    <input type="text" id="office_address_line1" name="office_address_line1" required>
+
+                    <label for="office_address_line2">Office Address Line 2:</label>
+                    <input type="text" id="office_address_line2" name="office_address_line2" required>
+
+                    <label for="pincode">Pin Code:</label>
+                    <input type="number" id="pincode" name="pincode" required>
+                </fieldset>
+            </div>
+
+            <div class="flex-container">
+                <!-- Project Details -->
+                <fieldset class="half-width">
+                    <legend>Project Details (Optional)</legend>
+                    <label for="previous_projects">No. of Previous Projects Done:</label>
+                    <input type="number" id="previous_projects" name="previous_projects">
+
+                    <label for="project_name">Current Project Name:</label>
+                    <input type="text" id="project_name" name="project_name">
+
+                    <label for="project_code">Project Code:</label>
+                    <input type="text" id="project_code" name="project_code">
+
+                    <div class="row">
+                        <div>
+                            <label for="project_start_date">Start Date:</label>
+                            <input type="text" id="project_start_date" name="project_start_date">
+                        </div>
+                        <div>
+                            <label for="project_end_date">End Date:</label>
+                            <input type="text" id="project_end_date" name="project_end_date">
+                        </div>
+                    </div>
+                    
+
+                    
+
+                    <label for="project_manager_name">Reporting Manager Name:</label>
+                    <input type="text" id="project_manager_name" name="project_manager_name">
+
+                    <label for="project_manager_code">Reporting Manager Code:</label>
+                    <input type="text" id="project_manager_code" name="project_manager_code">
+
+                    <label for="project_manager_email">Reporting Manager Email:</label>
+                    <input type="email" id="project_manager_email" name="project_manager_email">
+                </fieldset>
+
+                <!-- Finance Details -->
+                <fieldset class="half-width">
+                    <legend>Finance Details</legend>
+                    <label for="salary">PAN CARD:</label>
+                    <input type="text" id="PAN" name="PAN" required>
+
+                    <label for="bank_account_number">Aadhar Card:</label>
+                    <input type="text" id="Aadhar-card" name="Aadhar_card" required>
+
+                    <label for="Bank_Name">Bank Name:</label>
+                    <input type="text" id="Bank_Name:" name="Bank_Name">                   
+                    
+                    <label for="bank_branch">Bank Branch:</label>
+                    <input type="text" id="bank_branch" name="bank_branch" required>
+
+                    <label for="ifsc_code">IFSC Code:</label>
+                    <input type="text" id="ifsc_code" name="ifsc_code" required>
+
+                    <label for="account_number">Bank Account Number:</label>
+                    <input type="text" id="account_number" name="account_number" required>
+
+                    <label for="ifsc_code">CTC Breakup:</label>
+                    <input type="text" id="ctc" name="ctc" required>
+
+                </fieldset>
+            </div>
+
+        </div>
+    </div>
+
+    
+</body>
+</html>

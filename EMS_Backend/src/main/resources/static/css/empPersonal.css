@@ -1,0 +1,183 @@
+/* General styling for the entire body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    display: flex;
+    min-height: 100vh;
+}
+
+.navbar {
+    width: 250px;
+    background-color: #34495e;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.navbar .profile-section {
+    text-align: center;
+}
+
+.navbar .profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.navbar .username {
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+}
+
+.menu {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+}
+
+.menu-item {
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.menu-item:hover {
+    background-color: #2c3e50;
+}
+
+.menu-item i, .menu-item .material-symbols-outlined {
+    margin-right: 10px;
+}
+
+/* Profile Info Section */
+.profile-info {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.heading {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.logout {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.logout-button {
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.logout-button:hover {
+    background-color: #c0392b;
+}
+
+/* Profile Description */
+.profile-description {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.profile-description .profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.profile-information {
+    font-size: 20px;
+    color: #34495e;
+}
+
+/* Info Section (Project Details, Personal Details) */
+.info-section {
+    margin-top: 20px;
+}
+
+.info-section h2 {
+    font-size: 22px;
+    color: #34495e;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.info-section h2 i {
+    margin-right: 10px;
+    color: #2980b9;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.info-row label {
+    width: 220px;
+    font-size: 16px;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+}
+
+.info-row label i {
+    margin-right: 10px;
+    color: #2980b9;
+}
+
+.info-box {
+    flex: 1;
+    padding: 8px 10px;
+    font-size: 16px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+}
+
+.info-box:focus {
+    border-color: #2980b9;
+    outline: none;
+}
+
+/* Home Button */
+.homebutton {
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.homebutton:hover {
+    background-color: #1f639b;
+}
