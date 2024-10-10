@@ -78,10 +78,9 @@ The finance section includes personal financial data like PAN, Aadhar, and bank 
 ## Technologies Used
 
 - **Frontend**: HTML, CSS, JavaScript, Thymeleaf
-- **Backend**: Spring Boot, Spring Security, Spring Data JPA
+- **Backend**: Java, Spring Boot, Spring Security, Spring Data JPA
 - **Database**: MySQL
-- **Build Tool**: Maven/Gradle
-- **Others**: Hibernate, HikariCP
+- **Build Tool**: Maven
 
 ## Getting Started
 
