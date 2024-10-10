@@ -84,3 +84,12 @@ The finance section includes personal financial data like PAN, Aadhar, and bank 
    ```bash
    git clone https://github.com/yourusername/ems-backend.git
    cd ems-backend
+
+2. **Set up Development Environment:**
+
+   Ensure you have Java 17 and Maven installed on your machine. If not, download and install them from the official websites.
+
+3. **Run the Application:**
+
+   mvn spring-boot:run
+   The application will be accessible at http://localhost:8080.
