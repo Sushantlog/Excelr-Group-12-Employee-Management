@@ -61,13 +61,6 @@ EMS incorporates several data validation rules to ensure data integrity:
 
 The finance section includes personal financial data like PAN, Aadhar, and bank details. Employees can access their salary breakdown and download payslips. **Admins do not have access to download employee payslips**.
 
-## Participants
-
-- **[Your Name]** - [Role, e.g., Lead Developer]
-- **[Team Member 1]** - [Role]
-- **[Team Member 2]** - [Role]
-- *(Add more as needed)*
-
 ## Screenshots
 
 ### Admin Dashboard
