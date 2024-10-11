@@ -73,7 +73,7 @@ The finance section includes personal financial data like PAN, Aadhar, and bank 
 ### Prerequisites
 
 - **Java 17** or higher
-- **Maven** or **Gradle**
+- **Maven**
 - **MySQL** database
 - **IDE**: IntelliJ IDEA, Eclipse, or any preferred IDE
 
